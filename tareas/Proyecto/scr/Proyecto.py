@@ -9,7 +9,8 @@ AUTHOR
       Camila Villazon Soto Innes  
 
 DESCRIPTION
-        Este programa cuenta el total de A, C, G y T que hay en una secuencia de DNA ingresada por el
+        Este programa cuenta el total de A, C, G y T que hay 
+        en una secuencia de DNA ingresada por el
         usuario.
 
 USAGE
@@ -24,7 +25,6 @@ USAGE
 
 import os
 import argparse
-import re
 
 
 # ===========================================================================
