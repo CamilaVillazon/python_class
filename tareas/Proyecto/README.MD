@@ -15,8 +15,8 @@ Para poner a prueba estos elementos se resuelve el problema: Pedir una secuencia
 
 #### Caso 1. El archivo de secuencia existe 
 1. archivo de entrada: data/dna.txt 
-2. El programa se ejecuta % py scr/Proyecto.py  
-3. El programa debe pedir lo siguiente: path  
+2. El programa se ejecuta % py scr/Proyecto.py <data/dna.txt> 
+3. El programa debe pedir el path de entrada
 
 El resultado se vería en pantalla:  
 El total de cada nucleotido es:
