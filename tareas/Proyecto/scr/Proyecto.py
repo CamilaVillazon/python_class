@@ -14,7 +14,7 @@ DESCRIPTION
 
 USAGE
 
-    % python Proyecto
+    % python Proyecto.py <path>
     
 
 '''
@@ -24,6 +24,7 @@ USAGE
 
 import os
 import argparse
+import re
 
 
 # ===========================================================================
@@ -48,14 +49,22 @@ args = parser.parse_args()
 # ===========================================================================
 
 def atgc_contenido (dna_contenido):
-    # contar el total de A, T, G y C
+    """Contar el total de A, T, G y C
+
+    Parameters:
+    argument1 (str): cadena con secuencia de DNA
+
+    Returns:
+    str : cadena con el total de A, T, G y C
+
+   """
     a=dna_contenido.count('A')
     t=dna_contenido.count('T')
     g=dna_contenido.count('G')
     c=dna_contenido.count('C')
 
-    # imprimir el total de A, T, G y C
-    print("\n El total de cada nucleotido es: \n A: ",a,"\n T: ",t,"\n G: ",g,"\n C: ",c)
+    resultado = f'El contenido de A, T, G, C es:\nA: {a}\nT: {t}\nG: {g}\nC: {c}\n'
+    return(resultado)
 
 
 # ===========================================================================
@@ -74,11 +83,13 @@ try:
     dna_contenido=dna_contenido.rstrip("\n").upper().split("\n")
     dna_contenido=' '.join(dna_contenido)
     archivo_abierto.close()
-    if dna_contenido.count("N")>0:
-        raise ValueError(f'Su archivo contiene {dna_contenido.count("N")} N\'s')
+    for nt in dna_contenido:
+        if(nt!="A") and (nt!="T") and (nt!="G") and (nt!="C"):
+            raise ValueError(f'Su archivo contiene {dna_contenido.count("N")} N\'s')
     if len(dna_contenido)==0:
         raise ValueError(f'Archivo vacío')
 except IOError:
     print ("No se encontró el archivo. ")
 else:
-    atgc_contenido(dna_contenido)
+    resultado=atgc_contenido(dna_contenido)
+    print(resultado)
