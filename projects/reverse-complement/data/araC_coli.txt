@@ -1,4 +1,5 @@
 >hola, este es un cambio
+>Estos cambios fueron hechos por Camila Villazon
 
 >araC E. coli K12. Version NC_000913.3 GI:556503834
 atggctgaagcgcaaaatgatcccctgctgccgggatactcgtttaacgcccatctggtg
