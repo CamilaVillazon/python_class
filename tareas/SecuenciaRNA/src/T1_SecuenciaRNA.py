@@ -76,8 +76,6 @@ try:
     dna=dna.rstrip("\n").upper().split("\n")
     dna=' '.join(dna)
     archivo_abierto.close()
-    if dna.count("N")>0:
-        raise ValueError(f'Su archivo contiene {dna.count("N")} N\'s')
     if len(dna)==0:
         raise ValueError(f'Archivo vacío')
 except IOError:

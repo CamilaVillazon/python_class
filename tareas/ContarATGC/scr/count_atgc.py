@@ -1,13 +1,21 @@
 '''
 NAME
-    T1_SecuenciaRNA    
+    T5_count_atgc  
+
+VERSION
+    2.0 11/05/2023
 
 AUTHOR
       Camila Villazon Soto Innes  
 
 DESCRIPTION
-        Este programa regresa la posición del codón inicial y donde termina el codón de término de una secuencia
-        de DNA.     
+        Este programa cuenta el total de A, C, G y T que hay en una secuencia de DNA ingresada por el
+        usuario.
+
+USAGE
+
+    % python T5_count_atgc
+    
 
 '''
 # ===========================================================================
@@ -17,13 +25,13 @@ DESCRIPTION
 import os
 import argparse
 
+
 # ===========================================================================
 # =                            Command Line Options
 # ===========================================================================
 
 # Establecer parser
-parser= argparse.ArgumentParser(description=" Este programa indica la posicion del codón de inicio,"+
-      "\n asi como la secuencia entre el codon de inicio y el de paro\n")
+parser= argparse.ArgumentParser(description=" Este programa cuenta la ocurrencia de cada nucleotido A, T, G y C.")
 
 # Argumentos
 parser.add_argument('Path',
@@ -35,29 +43,19 @@ parser.add_argument('Path',
 args = parser.parse_args()
 
 
-
 # ===========================================================================
 # =                            functions
 # ===========================================================================
 
-def codon_inicio_paro(dna):
-      # codon de inicio complementario a ATG
-      inicio_codon= 'TAC'
+def atgc_contenido (dna_contenido):
+    # contar el total de A, T, G y C
+    a=dna_contenido.count('A')
+    t=dna_contenido.count('T')
+    g=dna_contenido.count('G')
+    c=dna_contenido.count('C')
 
-      # almacenar posicion del codon de inicio
-      pos_inicio_codon= dna.find(inicio_codon)
-
-      # imprimir posicion del codon de inicio
-      print('\n El codon de inicio esta en la posicion: ', pos_inicio_codon)
-
-      # codon de paro
-      paro_codon= 'ATT'
-
-      # almacenar posicion del codon de paro
-      pos_paro_codon= dna.find(paro_codon)
-
-      # imprimir del codon de inicio hasta donde termina el codon de paro
-      print('\n El fragmento que sera RNA es: ', dna [pos_inicio_codon:pos_paro_codon])
+    # imprimir el total de A, T, G y C
+    print("\n El total de cada nucleotido es: \n A: ",a,"\n T: ",t,"\n G: ",g,"\n C: ",c)
 
 
 # ===========================================================================
@@ -72,18 +70,15 @@ def codon_inicio_paro(dna):
 # Eliminar espacios vacíos
 try: 
     archivo_abierto= open(args.Path)
-    dna= archivo_abierto.read()
-    dna=dna.rstrip("\n").upper().split("\n")
-    dna=' '.join(dna)
+    dna_contenido= archivo_abierto.read()
+    dna_contenido=dna_contenido.rstrip("\n").upper().split("\n")
+    dna_contenido=' '.join(dna_contenido)
     archivo_abierto.close()
-    if dna.count("N")>0:
-        raise ValueError(f'Su archivo contiene {dna.count("N")} N\'s')
-    if len(dna)==0:
+    if dna_contenido.count("N")>0:
+        raise ValueError(f'Su archivo contiene {dna_contenido.count("N")} N\'s')
+    if len(dna_contenido)==0:
         raise ValueError(f'Archivo vacío')
 except IOError:
     print ("No se encontró el archivo. ")
 else:
-    codon_inicio_paro(dna)
-
-
-
+    atgc_contenido(dna_contenido)

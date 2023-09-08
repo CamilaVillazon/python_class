@@ -1,15 +1,18 @@
-# pythonI
-## Introduccion 
-Este es un repositorio con fines academicos. Con él se practican los coamandos en la consola,
-usar gitdesktop y github en el browser. 
-La finalidad es aprender sus aplicaciones y su uso correcto.
+# python class
 
 ## Autor
 Camila Villazon Soto Innes
-Estudiante de la licenciatura en Ciencias Genómicas de la UNAM.
+Licenciatura en Ciencias Genómicas, UNAM.
+
+## Acerca del Repositorio 
+Este repositorio tiene fines educativos. Su finalidad es ser una herramienta para el 
+aprendizaje de los lenguajes de programación Python y BioPython. 
+
+Dentro de este repositorio encontrará una serie de proyectos:
+
+| Proyecto | Descripción | URL |
+| -------- | ----------- | --- |
+|          |             |     | 
 
 ## Licencias
-Tiene licencia MIT
-
-## Motivación
-...
+Licencia MIT
