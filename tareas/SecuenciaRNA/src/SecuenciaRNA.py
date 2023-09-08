@@ -1,30 +1,29 @@
 '''
 NAME
-    T5_at_gc_content  
+    T1_SecuenciaRNA    
 
 AUTHOR
       Camila Villazon Soto Innes  
 
 DESCRIPTION
-        Este programa pregunta al usuario la ruta y el nombre del archivo de DNA, y 
-        regrese el porcentaje de AT y GC
-    
+        Este programa regresa la posición del codón inicial y donde termina el codón de término de una secuencia
+        de DNA.     
 
 '''
-
 # ===========================================================================
 # =                            imports
 # ===========================================================================
 
-import argparse 
+import os
+import argparse
 
 # ===========================================================================
 # =                            Command Line Options
 # ===========================================================================
 
-
 # Establecer parser
-parser= argparse.ArgumentParser(description=" Este programa calcula los porcentajes de GC y de AT en una secuencia de DNA")
+parser= argparse.ArgumentParser(description=" Este programa indica la posicion del codón de inicio,"+
+      "\n asi como la secuencia entre el codon de inicio y el de paro\n")
 
 # Argumentos
 parser.add_argument('Path',
@@ -36,26 +35,35 @@ parser.add_argument('Path',
 args = parser.parse_args()
 
 
+
 # ===========================================================================
 # =                            functions
 # ===========================================================================
 
-def at_gc_content(dna):
-    # Contar ocurrencia de cada nucleótido
-    a=dna.count('A')
-    t=dna.count('T')
-    g=dna.count('G')
-    c=dna.count('C')
+def codon_inicio_paro(dna):
+    # codon de inicio complementario a ATG
+    inicio_codon= 'TAC'
 
-    # Contar el total de nucleótidos
-    nt_totales= a + t + g + c
+    # almacenar posicion del codon de inicio
+    pos_inicio_codon= dna.find(inicio_codon)
+    if (pos_inicio_codon > 0):
+          
+          # imprimir posicion del codon de inicio
+          print('\n El codon de inicio esta en la posicion: ', pos_inicio_codon)
+          
+          # codon de paro
+          paro_codon= 'ATT'
+          
+          # almacenar posicion del codon de paro
+          pos_paro_codon= dna.find(paro_codon)
 
-    # Calcular porcentaje de AT y GC
-    porcentaje_at= ((a+t)/nt_totales)*100
-    porcentaje_gc= ((g+c)/nt_totales)*100
-
-    print("\n El porcentaje de AT es : ", porcentaje_at, " % \n", 
-          "El porcentaje de GC es: ", porcentaje_gc, " %")
+          if (pos_paro_codon > 0):
+              # imprimir del codon de inicio hasta donde termina el codon de paro
+              print('\n El fragmento que sera RNA es: ', dna [pos_inicio_codon:pos_paro_codon])
+    
+    else:
+        print("\n No se encontró una secuencia codificante.\n")
+        
 
 
 # ===========================================================================
@@ -63,21 +71,23 @@ def at_gc_content(dna):
 # ===========================================================================
 
 
-#Abrir y leer archivo. 
+# Abrir y leer archivo. 
 # Eliminar ultimo caracter. 
 # Corregir a mayúsculas
 # Si vienen varial lineas, separa por saltos de línea en una lista
 # Eliminar espacios vacíos
-try:
-    archivo=open(args.Path)
-    dna=archivo.read().rstrip("\n").upper().split("\n")
+try: 
+    archivo_abierto= open(args.Path)
+    dna= archivo_abierto.read()
+    dna=dna.rstrip("\n").upper().split("\n")
     dna=' '.join(dna)
-    archivo.close()
-    if dna.count("N")>0:
-        raise ValueError(f'Su archivo contiene {dna.count("N")} N\'s')
+    archivo_abierto.close()
     if len(dna)==0:
         raise ValueError(f'Archivo vacío')
 except IOError:
     print ("No se encontró el archivo. ")
 else:
-    at_gc_content(dna)
+    codon_inicio_paro(dna)
+
+
+
