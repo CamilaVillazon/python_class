@@ -1,6 +1,6 @@
 '''
 NAME
-    T1_SecuenciaRNA    
+    SecuenciaRNA    
 
 AUTHOR
       Camila Villazon Soto Innes  
