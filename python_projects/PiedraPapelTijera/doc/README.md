@@ -15,9 +15,10 @@ Para poner en práctica algunas de las estructuras de control de flujo se realiz
 
 El programa `T6_piedra-papel-tijera` hace lo siguiente:
 
-1. Pedir al usuario su nombre y una opción 'piedra', 'papel' o 'tijera'.
-2. El programa genera una opción al azar
-3. La elección del usuario y la generada por el programa son evaluadas para determinar si el usuario gana, pierde o empata.
+1. El usuario ingresa el número de partidas a jugar como parámetro por línea de comandos 
+2. Pedir al usuario su nombre y una opción 1=piedra, 2=papel o 3=tijera.
+3. El programa genera una opción al azar
+4. La elección del usuario y la generada por el programa son evaluadas para determinar si el usuario gana, pierde o empata.
 
 ## Resultados y pruebas
 
